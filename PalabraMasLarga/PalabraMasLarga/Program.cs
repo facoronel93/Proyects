@@ -32,13 +32,37 @@ namespace PalabraMasLarga
             else
                 showDiferenciaEntrePalabras(palabra2, palabra1);
         }
+
+        static bool confirmaNuevo()
+        {
+
+            string confirma = "";
+            do
+            {
+                Console.WriteLine("si desea ingresa otro radio ingrese 'si' de lo contrario 'no'");
+                confirma = Console.ReadLine();
+                if (string.Compare(confirma, "si") != 0)
+                {
+                    if (string.Compare(confirma, "no") == 0)
+                        return false;
+                    else
+                    { Console.WriteLine("los datos ingresados no son correctos"); };
+                }
+
+            } while (string.Compare(confirma, "no") != 0 && string.Compare(confirma, "si") != 0);
+            return true;
+        }
+
         static void Main()
         {
-            string palabra1=string.Empty, palabra2=string.Empty;
-            palabra1 = cargaDatos();
-            palabra2 = cargaDatos();
-            DiferenciaEntrePalabras(palabra1, palabra2);
-            Console.ReadKey();
+            do
+            {
+                string palabra1 = string.Empty, palabra2 = string.Empty;
+                palabra1 = cargaDatos();
+                palabra2 = cargaDatos();
+                DiferenciaEntrePalabras(palabra1, palabra2);
+            } while (confirmaNuevo());
+            
         }
     }
 }
