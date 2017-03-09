@@ -8,29 +8,36 @@ namespace PalabraMasLarga
 {
     class Program
     {
-        static void cargaDatos(string palabra1, string palabra2)
+        static string cargaDatos()
         {
-            Console.WriteLine("ingrese palabra 1");
-            palabra1 = Console.ReadLine();
-            Console.WriteLine("ingrese palabra 2");
-            palabra2 = Console.ReadLine();
+            Console.WriteLine("ingrese palabra");
+            string palabra = Console.ReadLine();
+            Console.WriteLine("palabra:" + palabra);
+            return palabra;
+           
         }
-        static void showDiferenciaEntrePalabras(string palabra1, string palabra2)
+        static void showDiferenciaEntrePalabras(string palabraMayor,string palabraMenor)
         {
-            int diferencia;
-            diferencia = (palabra1.Length - palabra2.Length);
-            if(palabra1.Length > palabra2.Length)
+            int diferencia=0;
+            diferencia = ((palabraMayor.Length) - (palabraMenor.Length));
+            Console.WriteLine($"la palabra {palabraMayor} tiene {diferencia} letras mas que {palabraMenor}");
+            
+        }
+        static void DiferenciaEntrePalabras(string palabra1, string palabra2)
+        { 
+            if (palabra1.Length > palabra2.Length)
             {
-                Console.WriteLine($"la palabra {palabra1} tiene {diferencia} letras mas que {palabra2}");
+                showDiferenciaEntrePalabras(palabra1, palabra2);
             }
             else
-                Console.WriteLine($"la palabra {palabra2} tiene {diferencia} letras mas que {palabra1}");
+                showDiferenciaEntrePalabras(palabra2, palabra1);
         }
-        static void Main(string[] args)
+        static void Main()
         {
-            string palabra1=null, palabra2=null;
-            cargaDatos(palabra1, palabra2);
-            showDiferenciaEntrePalabras(palabra1, palabra2);
+            string palabra1=string.Empty, palabra2=string.Empty;
+            palabra1 = cargaDatos();
+            palabra2 = cargaDatos();
+            DiferenciaEntrePalabras(palabra1, palabra2);
             Console.ReadKey();
         }
     }
