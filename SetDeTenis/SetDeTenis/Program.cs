@@ -32,6 +32,13 @@ namespace SetDeTenis
                         {
                             Console.WriteLine("aun no termina");
                         }
+                        else
+                        {
+                            if(jugadorA==7 && jugadorB < 5)
+                            {
+                                Console.WriteLine("datos invalidos");
+                            }
+                        }
                     }
                 }
             }
