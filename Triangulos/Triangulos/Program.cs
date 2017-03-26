@@ -19,7 +19,7 @@ namespace Triangulos
 
                 try
                 {
-                    Console.WriteLine("ingrese valor");
+                    Console.WriteLine("ingrese valor de lado");
                     numero = Convert.ToDouble(Console.ReadLine());
                     Console.WriteLine("valor: " + numero);
                 }
@@ -94,22 +94,48 @@ namespace Triangulos
            
     
         }
+        static bool confirmaNuevo()
+        {
+
+            string confirma = string.Empty;
+            do
+            {
+                Console.WriteLine("si desea ingresa otro numero ingrese 'si' de lo contrario 'no'");
+                confirma = Console.ReadLine();
+                if (string.Compare(confirma, "si") != 0)
+                {
+                    if (string.Compare(confirma, "no") == 0)
+                        return false;
+                    else
+                    {
+                        Console.WriteLine("los datos ingresados no son correctos");
+                    };
+                }
+
+            } while (string.Compare(confirma, "no") != 0 && string.Compare(confirma, "si") != 0);
+            return true;
+        }
+
 
         static void Main(string[] args)
         {
             double ladoA, ladoB, ladoC;
-            ladoA = cargaDatos();
-            ladoB = cargaDatos();
-            ladoC = cargaDatos();
-            if (confirmarDesigualdadTriangular(ladoA,ladoB,ladoC) == true)
+            do
             {
-                verificatipoTriangulo(ladoA, ladoB, ladoC);
-            }
-            else
-            {
-                Console.WriteLine("no es un triangulo valido");
-            }
-            Console.ReadKey();
+                ladoA = cargaDatos();
+                ladoB = cargaDatos();
+                ladoC = cargaDatos();
+                if (confirmarDesigualdadTriangular(ladoA, ladoB, ladoC)== true)
+                {
+                    verificatipoTriangulo(ladoA, ladoB, ladoC);
+                }
+                else
+                {
+                    Console.WriteLine("no es un triangulo valido");
+                }
+
+            } while (confirmaNuevo());
+           
         }
     }
 }
