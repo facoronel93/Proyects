@@ -24,7 +24,13 @@ namespace Phoneword
             EditText phoneNumberText = FindViewById<EditText>(Resource.Id.PhoneNumberText);
             Button translateButton = FindViewById<Button>(Resource.Id.TranslateButton);
             Button callButton = FindViewById<Button>(Resource.Id.CallButton);
-            
+            Button menuCameraButton = FindViewById<Button>(Resource.Id.menuCameraButton);
+
+            menuCameraButton.Click  += (object sender, EventArgs e) =>
+            {
+                var intent = new Intent(this, typeof(CameraActivity));
+                StartActivity(intent);
+            };
 
             // Disable the "Call" button
             callButton.Enabled = false;

@@ -30,4 +30,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/callHistoryButton"
         android:enabled="false" />
+    <Button
+        android:text="Menu Camara"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/menuCameraButton" />
 </LinearLayout>

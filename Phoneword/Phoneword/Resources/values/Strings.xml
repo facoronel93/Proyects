@@ -2,6 +2,7 @@
 <resources>
     <string name="callHistory">Call History</string>
     <string name="ApplicationName">Phoneword</string>
+    <string name="openCamera">Open Camera</string>
 </resources>
 
 
