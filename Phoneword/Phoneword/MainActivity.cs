@@ -21,10 +21,19 @@ namespace Phoneword
             SetContentView(Resource.Layout.Main);
 
             // Get the UI controls from the loaded layout:
+
+        
             EditText phoneNumberText = FindViewById<EditText>(Resource.Id.PhoneNumberText);
             Button translateButton = FindViewById<Button>(Resource.Id.TranslateButton);
             Button callButton = FindViewById<Button>(Resource.Id.CallButton);
             Button menuCameraButton = FindViewById<Button>(Resource.Id.menuCameraButton);
+            Button weather = FindViewById<Button>(Resource.Id.weather);
+
+            weather.Click += (object sender, EventArgs e) =>
+            {
+                var intent = new Intent(this, typeof(weatherActivity));
+                StartActivity(intent);
+            };
 
             menuCameraButton.Click  += (object sender, EventArgs e) =>
             {
