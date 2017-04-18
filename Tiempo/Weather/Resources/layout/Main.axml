@@ -11,20 +11,27 @@
         android:gravity="center_horizontal"
         android:id="@+id/latSection">
         <TextView
-            android:text="Ingrese Ciudad"
+            android:text="Ingresar Ciudad"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="140dp"
             android:layout_height="40dp"
             android:gravity="right"
-            android:id="@+id/longLabel" />
+            android:id="@+id/ciudad" />
         <EditText
             android:text="rosario"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:id="@+id/Ciudad"
+            android:id="@+id/latText"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginLeft="5dp" />
     </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:id="@+id/longSection" />
     <LinearLayout
         android:orientation="vertical"
         android:layout_marginTop="28dp"
@@ -38,7 +45,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Obtener Clima" />
+            android:text="Get Weather" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -118,7 +125,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/condSection">
         <TextView
-            android:text="Pais"
+            android:text="Conditions:"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="120dp"
             android:layout_height="30dp"
@@ -130,6 +137,6 @@
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:gravity="left"
-            android:id="@+id/pais" />
+            android:id="@+id/condText" />
     </LinearLayout>
 </LinearLayout>

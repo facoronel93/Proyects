@@ -27,96 +27,71 @@ namespace Phoneword
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.weather);
+ 
 
-            // Get the latitude/longitude EditBox and button resources:
-            EditText latitude = FindViewById<EditText>(Resource.Id.latText);
-            EditText longitude = FindViewById<EditText>(Resource.Id.longText);
+       
+            EditText ciudad = FindViewById<EditText>(Resource.Id.Ciudad);
             Button button = FindViewById<Button>(Resource.Id.getWeatherButton);
+            
+            button.Click += async (sender, e) =>
+            {
+                string url = "http://api.apixu.com/v1/current.json?key=43dad43a410f428d86e133125171804&q=" + ciudad.Text;
 
-            // When the user clicks the button ...
-            button.Click += async (sender, e) => {
 
-                // Get the latitude and longitude entered by the user and create a query.
-                string url = "http://api.geonames.org/findNearByWeatherJSON?lat=" +
-               latitude.Text +
-               "&lng=" +
-               longitude.Text +
-               "&username=demo";
-
-                // Fetch the weather information asynchronously, 
-                // parse the results, then update the screen:
+      
                 JsonValue json = await FetchWeatherAsync(url);
                 ParseAndDisplay (json);
             };
-        }//override OnCreated
+        }
 
-        // Gets weather data from the passed URL.
+     
         private async Task<JsonValue> FetchWeatherAsync(string url)
         {
-            // Create an HTTP web request using the URL:
+
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
             request.ContentType = "application/json";
             request.Method = "GET";
 
-            // Send the request to the server and wait for the response:
+      
             using (WebResponse response = await request.GetResponseAsync())
             {
-                // Get a stream representation of the HTTP web response:
+               
                 using (Stream stream = response.GetResponseStream())
                 {
-                    // Use this stream to build a JSON document object:
+         
                     JsonValue jsonDoc = await Task.Run(() => JsonObject.Load(stream));
-                    Console.Out.WriteLine("Response: {0}", jsonDoc.ToString());
+                    
 
-                    // Return the JSON document:
                     return jsonDoc;
                 }
             }
-        } //consulta HTTP
+        }
 
-
-        // Parse the weather data, then write temperature, humidity, 
-        // conditions, and location to the screen.
+    
         private void ParseAndDisplay(JsonValue json)
         {
-            // Get the weather reporting fields from the layout resource:
+  
             TextView location = FindViewById<TextView>(Resource.Id.locationText);
             TextView temperature = FindViewById<TextView>(Resource.Id.tempText);
             TextView humidity = FindViewById<TextView>(Resource.Id.humidText);
-            TextView conditions = FindViewById<TextView>(Resource.Id.condText);
+            TextView pais = FindViewById<TextView>(Resource.Id.pais);
+            
+            JsonValue temperatura = json["current"];
+            JsonValue weatherResults = json["location"];
 
-            // Extract the array of name/value results for the field name "weatherObservation". 
-            JsonValue weatherResults = json["weatherObservation"];
+            location.Text = weatherResults["name"];
 
-            // Extract the "stationName" (location string) and write it to the location TextBox:
-            location.Text = weatherResults["stationName"];
+            double temperaturaApi = temperatura["temp_c"];
+            temperature.Text = temperaturaApi.ToString() + "ºC";
 
-            // The temperature is expressed in Celsius:
-            double temp = weatherResults["temperature"];
-            // Convert it to Fahrenheit:
-            temp = ((9.0 / 5.0) * temp) + 32;
-            // Write the temperature (one decimal place) to the temperature TextBox:
-            temperature.Text = String.Format("{0:F1}", temp) + "° F";
 
             
-            // Get the percent humidity and write it to the humidity TextBox:
-            double humidPercent = weatherResults["humidity"];
-            humidity.Text = humidPercent.ToString() + "%";
+            double humidPercent = temperatura["humidity"];
+            humidity.Text =humidPercent.ToString() + "%";
             
-            // Get the "clouds" and "weatherConditions" strings and 
-            // combine them. Ignore strings that are reported as "n/a":
-            string cloudy = weatherResults["clouds"];
-            if (cloudy.Equals("n/a"))
-                cloudy = "";
-            string cond = weatherResults["weatherCondition"];
-            if (cond.Equals("n/a"))
-                cond = "";
-
-            // Write the result to the conditions TextBox:
-          conditions.Text = cloudy + " " + cond;
-
-              
-        }//conversion a JSon
+            pais.Text = weatherResults["country"];
+        }
+    
 
     }// class
 }//phoneword
