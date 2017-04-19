@@ -70,7 +70,7 @@ namespace Proyect.core.ViewModels
             string checkResult = result.ToString();
             httpClient.Dispose();
             RespuestaTiempo json = JsonConvert.DeserializeObject<RespuestaTiempo>(result);
-            ciudad=json.location.name;
+            this.Pais = json.location.country;
         }
 
    

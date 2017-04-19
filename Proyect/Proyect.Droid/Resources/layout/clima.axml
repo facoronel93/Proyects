@@ -57,12 +57,14 @@
             android:layout_height="30dp"
             android:gravity="left"
             android:id="@+id/locLabel" />
-        <TextView
-            android:text=""
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:gravity="left"
+          <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      local:MvxBind="Text Pais" />
+       <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      local:MvxBind="Text Ciudad" />
                />
     </LinearLayout>
     <LinearLayout
@@ -81,12 +83,12 @@
             android:gravity="left"
             android:id="@+id/tempLabel" />
         <TextView
-            android:text=""
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            
+            
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:gravity="left"
-            android:id="@+id/tempText"
+           
             local:MvxBind="Text Ciudad"/>
     </LinearLayout>
     <LinearLayout
