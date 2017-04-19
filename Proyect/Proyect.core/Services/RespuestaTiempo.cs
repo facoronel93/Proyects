@@ -9,6 +9,6 @@ namespace Proyect.core.Services
     public class RespuestaTiempo
     {
 
-        public RespuestaLocation location { get; set; };
+        public RespuestaLocation location { get; set; }
     }
 }

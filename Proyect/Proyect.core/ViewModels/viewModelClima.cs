@@ -69,8 +69,8 @@ namespace Proyect.core.ViewModels
             var result = await httpClient.GetStringAsync(url);
             string checkResult = result.ToString();
             httpClient.Dispose();
-            var json = JsonConvert.DeserializeObject(result);
-          
+            RespuestaTiempo json = JsonConvert.DeserializeObject<RespuestaTiempo>(result);
+            ciudad=json.location.name;
         }
 
    

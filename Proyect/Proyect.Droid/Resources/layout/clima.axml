@@ -19,13 +19,13 @@
             android:gravity="right"
             android:id="@+id/longLabel" />
         <EditText
-            android:text="rosario"
+            android:text=""
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:id="@+id/Ciudad"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginLeft="5dp"
-            local:MvxBind="Text Ciudad" />/>
+             />
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:gravity="left"
-            android:id="@+id/locationText" />
+               />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -86,7 +86,8 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:gravity="left"
-            android:id="@+id/tempText" />
+            android:id="@+id/tempText"
+            local:MvxBind="Text Ciudad"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proyect.core.Services
 {
-    class RespuestaLocation
+   public class RespuestaLocation
     {
        public  string name { get; set; }
         public string region { get; set; }
