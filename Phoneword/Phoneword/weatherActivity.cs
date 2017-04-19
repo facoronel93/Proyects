@@ -1,21 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
-using System.Net;
-
 using System.Threading.Tasks;
 using System.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Json;
+using System.Net;
 
 namespace Phoneword
 {
@@ -43,7 +33,7 @@ namespace Phoneword
                 ParseAndDisplay (json);
             };
         }
-
+        
      
         private async Task<JsonValue> FetchWeatherAsync(string url)
         {
@@ -51,7 +41,8 @@ namespace Phoneword
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
             request.ContentType = "application/json";
             request.Method = "GET";
-
+           
+           
       
             using (WebResponse response = await request.GetResponseAsync())
             {
@@ -60,8 +51,7 @@ namespace Phoneword
                 {
          
                     JsonValue jsonDoc = await Task.Run(() => JsonObject.Load(stream));
-                    
-
+      
                     return jsonDoc;
                 }
             }

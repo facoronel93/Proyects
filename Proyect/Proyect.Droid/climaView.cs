@@ -1,8 +1,8 @@
 ﻿using Android.App;
 using Android.Widget;
-using Android.OS;
 using MvvmCross.Droid.Views;
-
+using System;
+using System.Net;
 namespace Proyect.Droid
 {
     [Activity(Label = "Clima", MainLauncher = true, Icon = "@drawable/icon")]
@@ -18,8 +18,23 @@ namespace Proyect.Droid
         {
             base.OnViewModelSet();
             SetContentView(Resource.Layout.clima);
+
+
+            Button obtenerClima = FindViewById<Button>(Resource.Id.obtenerClima);
+            //   var asd = new viewModelClima();
+            obtenerClima.Click += (object sender, EventArgs e) =>
+            {
+
+
+            };
         }
-  
+   
+        
+
+     
+
+        }
     }
-}
+
+
 

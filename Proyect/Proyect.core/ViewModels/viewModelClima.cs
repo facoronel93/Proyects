@@ -1,20 +1,32 @@
 ﻿using MvvmCross.Core.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.IO;
+using System.Net;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Platform;
+using System.Net.Http;
+using System.Runtime.Serialization.Json;
+using Newtonsoft.Json.Linq;
+using Proyect.core.Services;
+
 namespace Proyect.core.ViewModels
 {
    public class viewModelClima : MvxViewModel
     {
+        public override void Start()
+        {
+            asd();
+            base.Start();
+        }
 
         private string ciudad;
         public string Ciudad
         {
             get { return ciudad; }
-            set { Ciudad = value;RaisePropertyChanged(() => Ciudad); }
+            set { ciudad = value;RaisePropertyChanged(() => Ciudad); ; }
         }
 
         private string provincia;
@@ -41,18 +53,30 @@ namespace Proyect.core.ViewModels
         private string humedad;
         public string Humedad
         {
+            
             get { return humedad; }
             set { humedad = value; RaisePropertyChanged(() => Humedad); }
         }
 
-        public void asd()
+
+     
+
+        public async void asd()
         {
-            string url = "http://api.apixu.com/v1/current.json?key=43dad43a410f428d86e133125171804&q=rosario";
-            string json = JsonConvert.SerializeObject(url);
+            var url = new Uri("http://api.apixu.com/v1/current.json?key=43dad43a410f428d86e133125171804&q=rosario");
+            var httpClient = new HttpClient();
+
+            var result = await httpClient.GetStringAsync(url);
+            string checkResult = result.ToString();
+            httpClient.Dispose();
+            var json = JsonConvert.DeserializeObject(result);
+          
         }
-      
 
-       
-
+   
     }
-}
+           
+        }
+
+
+    
